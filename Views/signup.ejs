@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <% errors.forEach((error) -> { %>
+        <p><%= error %></p>
+    <% }) %>
+
+
     <form action="/auth/local/signup" method="POST">
         <input type="email" name="email" placeholder="email" />
         <br />
