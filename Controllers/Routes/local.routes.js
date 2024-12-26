@@ -1,5 +1,8 @@
 // localhost:3000/auth/local/<Route>
-const Router = require('express').Router;
+const Router = require('express').Router(),
+    bcrypt = require('bcryptjs'),
+    User = require('../../Models/user.model'),
+    salt = bcrypt.genSaltSync(10);
 
 Router.post('/signup', (req, res) =>{
     let errors = [];
@@ -44,4 +47,21 @@ Router.post('/signup', (req, res) =>{
     });
 });
 
-module.exports = Router();
+Router.post('/login', (req, res) =>{
+    let errors = [];
+    User.findOne({username: req.body.username}).then((user) =>{
+        let userExists = user;
+        if(userExists && (bcrypt.compareSync(req.body.password, user.password) === true)){
+            req.session.user = user;
+            res.redirect('/dashboard');
+        } else {
+            errors.push('Username or password is incorrect');
+            res.render('login', {errors,});
+        }
+    }).catch((err) =>{
+        errors.push('User does not exist');
+        res.render('login', {errors,});
+    });
+});
+
+module.exports = Router;

@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
 let UserSchema = new Schema({
     email: String,
     facebookid: String,
-    password: StaticRange,
+    password: String,
     profile_pic: String, 
     people_you_are_following: [String],
     followers: [String],

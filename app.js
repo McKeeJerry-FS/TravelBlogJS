@@ -8,8 +8,8 @@ passport = require('passport'),
 app = express();
 
 // Requiring Routes
-const baseRoutes = require('./Controllers/Routes/base.routes'),
-userRoutes = require('./Controllers/Routes/user.routes'),
+const baseRoutes = require('./Controllers/Routes/base.routes');
+const userRoutes = require('./Controllers/Routes/user.routes'),
 localRoutes = require('./Controllers/Routes/local.routes'),
 articleRoutes = require('./Controllers/Routes/article.routes'),
 fbRoutes = require('./Controllers/Routes/fb.routes');
