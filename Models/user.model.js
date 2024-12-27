@@ -9,7 +9,7 @@ let UserSchema = new Schema({
     people_you_are_following: [String],
     followers: [String],
     username: {
-        type:String,
+        type: String,
         required: true,
         unique: true,
     },
